@@ -187,7 +187,7 @@ tasks:
       - manual
       - postEnvironmentStart
     command: |
-      cd /workspaces/gitpodflix-demo/database/main
+      cd /workspaces/onaflix-demo/database/main
 
       # Wait for PostgreSQL to be ready
       echo "Waiting for PostgreSQL to be ready..."
@@ -198,8 +198,8 @@ tasks:
         fi
         if [ $i -eq 30 ]; then
           echo "Timeout waiting for PostgreSQL. Checking service status..."
-          gitpod automations service status postgres || true
-          gitpod automations service logs postgres || true
+          ona automations service status postgres || true
+          ona automations service logs postgres || true
           exit 1
         fi
         echo "Waiting for PostgreSQL... attempt $i/30"
@@ -227,7 +227,7 @@ tasks:
     triggeredBy:
       - manual
     command: |
-      cd /workspaces/gitpodflix-demo/database/main
+      cd /workspaces/onaflix-demo/database/main
       PGPASSWORD=ona psql -h localhost -U ona -d onaflix -c "TRUNCATE TABLE movies;"
 
   openDemoPorts:
