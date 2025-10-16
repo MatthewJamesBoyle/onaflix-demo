@@ -99,8 +99,8 @@ services:
           fi
           if [ $i -eq 60 ]; then
             echo "Timeout waiting for PostgreSQL. Checking service status..."
-            ona automations service status postgres || true
-            ona automations service logs postgres || true
+            gitpod automations service status postgres || true
+            gitpod automations service logs postgres || true
             exit 1
           fi
           echo "Waiting for PostgreSQL... attempt $i/60"
@@ -153,8 +153,8 @@ services:
           fi
           if [ $i -eq 60 ]; then
             echo "Timeout waiting for backend API. Checking service status..."
-            ona automations service status catalog || true
-            ona automations service logs catalog || true
+            gitpod automations service status catalog || true
+            gitpod automations service logs catalog || true
             exit 1
           fi
           echo "Waiting for backend... attempt $i/60"
@@ -198,8 +198,8 @@ tasks:
         fi
         if [ $i -eq 30 ]; then
           echo "Timeout waiting for PostgreSQL. Checking service status..."
-          ona automations service status postgres || true
-          ona automations service logs postgres || true
+          gitpod automations service status postgres || true
+          gitpod automations service logs postgres || true
           exit 1
         fi
         echo "Waiting for PostgreSQL... attempt $i/30"
@@ -242,7 +242,7 @@ tasks:
       
       # Wait for frontend to be ready
       for i in {1..30}; do
-        if ona automations service status ona-flix | grep -q "ready"; then
+        if gitpod automations service status ona-flix | grep -q "ready"; then
           echo "Frontend service is ready"
           break
         fi
@@ -255,8 +255,8 @@ tasks:
       done
       
       echo "Opening demo ports..."
-      ona environment port open 3000 --name "Ona Flix"
-      ona environment port open 3001 --name "Catalog Service"
+      gitpod environment port open 3000 --name "Ona Flix"
+      gitpod environment port open 3001 --name "Catalog Service"
       echo "Demo ports opened successfully!"
 
   checkSystemStatus:
@@ -270,11 +270,11 @@ tasks:
       
       echo "1. Service Status:"
       echo "  PostgreSQL Database:"
-      ona automations service status postgres || echo "    ❌ Not running"
+      gitpod automations service status postgres || echo "    ❌ Not running"
       echo "  Catalog Service:"
-      ona automations service status catalog || echo "    ❌ Not running"
+      gitpod automations service status catalog || echo "    ❌ Not running"
       echo "  Frontend Service:"
-      ona automations service status ona-flix || echo "    ❌ Not running"
+      gitpod automations service status ona-flix || echo "    ❌ Not running"
       echo ""
       
       echo "2. Port Status:"
@@ -320,10 +320,10 @@ tasks:
       echo ""
       
       echo "4. Troubleshooting Commands:"
-      echo "  Restart all services: ona automations service restart postgres catalog ona-flix"
-      echo "  View service logs: ona automations service logs <service-name>"
-      echo "  Seed database: ona automations task start seedDatabase"
-      echo "  Open ports: ona automations task start openDemoPorts"
+      echo "  Restart all services: gitpod automations service restart postgres catalog ona-flix"
+      echo "  View service logs: gitpod automations service logs <service-name>"
+      echo "  Seed database: gitpod automations task start seedDatabase"
+      echo "  Open ports: gitpod automations task start openDemoPorts"
 
   RMRF:
     name: "rm -rf demo"
