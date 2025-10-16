@@ -23,13 +23,13 @@ print_error() {
     echo -e "${RED}[ERROR]${NC} $1"
 }
 
-echo "🔍 GitpodFlix Health Check"
+echo "🔍 OnaFlix Health Check"
 echo "=========================="
 
 # Check PostgreSQL
 print_status "Checking PostgreSQL database..."
-if PGPASSWORD=gitpod psql -h localhost -U gitpod -d gitpodflix -c "SELECT 1" >/dev/null 2>&1; then
-    MOVIE_COUNT=$(PGPASSWORD=gitpod psql -h localhost -U gitpod -d gitpodflix -t -c "SELECT COUNT(*) FROM movies" 2>/dev/null | xargs)
+if PGPASSWORD=ona psql -h localhost -U ona -d onaflix -c "SELECT 1" >/dev/null 2>&1; then
+    MOVIE_COUNT=$(PGPASSWORD=ona psql -h localhost -U ona -d onaflix -t -c "SELECT COUNT(*) FROM movies" 2>/dev/null | xargs)
     if [ "$MOVIE_COUNT" -gt 0 ]; then
         print_success "PostgreSQL: ✅ Connected ($MOVIE_COUNT movies in database)"
     else

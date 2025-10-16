@@ -1,4 +1,4 @@
-const API_BASE_URL = (window.location.hostname.endsWith('.gitpod.dev') || 
+const API_BASE_URL = (window.location.hostname.endsWith('.ona.dev') ||
                      window.location.hostname.includes('.flex.doptig.cloud'))
   ? `https://3001--${window.location.hostname.replace(/\d{1,4}--/, '')}/api`
   : 'http://localhost:3001/api';

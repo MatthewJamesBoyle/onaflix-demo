@@ -2,7 +2,7 @@
 
 set -e
 
-echo "🚀 Starting GitpodFlix Environment..."
+echo "🚀 Starting OnaFlix Environment..."
 
 # Colors for output
 RED='\033[0;31m'
@@ -108,7 +108,7 @@ if ! wait_for_service "PostgreSQL Container" "docker-compose ps postgres | grep 
 fi
 
 # Wait for database connection and schema to be ready
-if ! wait_for_service "PostgreSQL Database" "PGPASSWORD=gitpod psql -h localhost -U gitpod -d gitpodflix -c 'SELECT 1'" 30 2; then
+if ! wait_for_service "PostgreSQL Database" "PGPASSWORD=ona psql -h localhost -U ona -d onaflix -c 'SELECT 1'" 30 2; then
     print_error "PostgreSQL database connection failed"
     docker-compose logs
     exit 1
@@ -116,7 +116,7 @@ fi
 
 # Verify database schema is ready (migrations have run)
 print_status "Verifying database schema..."
-if ! wait_for_service "Database Schema" "PGPASSWORD=gitpod psql -h localhost -U gitpod -d gitpodflix -c 'SELECT 1 FROM information_schema.tables WHERE table_name = '\''movies'\'''" 30 2; then
+if ! wait_for_service "Database Schema" "PGPASSWORD=ona psql -h localhost -U ona -d onaflix -c 'SELECT 1 FROM information_schema.tables WHERE table_name = '\''movies'\'''" 30 2; then
     print_error "Database schema not ready - migrations may not have completed"
     docker-compose logs
     exit 1
@@ -138,9 +138,9 @@ if [ ! -f .env ]; then
     print_status "Creating .env file..."
     cat > .env << EOF
 DB_HOST=localhost
-DB_USER=gitpod
-DB_PASSWORD=gitpod
-DB_NAME=gitpodflix
+DB_USER=ona
+DB_PASSWORD=ona
+DB_NAME=onaflix
 DB_PORT=5432
 PORT=3001
 EOF
@@ -193,14 +193,14 @@ cd ..
 print_status "Seeding database with sample data..."
 
 # Double-check database is ready before seeding
-if ! PGPASSWORD=gitpod psql -h localhost -U gitpod -d gitpodflix -c "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'movies'" >/dev/null 2>&1; then
+if ! PGPASSWORD=ona psql -h localhost -U ona -d onaflix -c "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'movies'" >/dev/null 2>&1; then
     print_error "Database schema not ready for seeding"
     exit 1
 fi
 
 if [ -f "database/main/seeds/movies_complete.sql" ]; then
     print_status "Seeding database from SQL file..."
-    if PGPASSWORD=gitpod psql -h localhost -U gitpod -d gitpodflix -f database/main/seeds/movies_complete.sql >/dev/null 2>&1; then
+    if PGPASSWORD=ona psql -h localhost -U ona -d onaflix -f database/main/seeds/movies_complete.sql >/dev/null 2>&1; then
         print_success "Database seeded with sample movies"
     else
         print_error "Failed to seed database from SQL file"
@@ -226,8 +226,8 @@ fi
 print_status "Performing final health checks..."
 
 # Check PostgreSQL
-if PGPASSWORD=gitpod psql -h localhost -U gitpod -d gitpodflix -c "SELECT COUNT(*) FROM movies" >/dev/null 2>&1; then
-    MOVIE_COUNT=$(PGPASSWORD=gitpod psql -h localhost -U gitpod -d gitpodflix -t -c "SELECT COUNT(*) FROM movies" | xargs)
+if PGPASSWORD=ona psql -h localhost -U ona -d onaflix -c "SELECT COUNT(*) FROM movies" >/dev/null 2>&1; then
+    MOVIE_COUNT=$(PGPASSWORD=ona psql -h localhost -U ona -d onaflix -t -c "SELECT COUNT(*) FROM movies" | xargs)
     print_success "PostgreSQL: ✅ ($MOVIE_COUNT movies in database)"
 else
     print_error "PostgreSQL: ❌ Database connection failed"
@@ -249,7 +249,7 @@ fi
 
 # Step 7: Display summary
 echo ""
-echo "🎬 GitpodFlix Environment Ready!"
+echo "🎬 OnaFlix Environment Ready!"
 echo "================================"
 echo "Frontend:     http://localhost:3000"
 echo "Backend API:  http://localhost:3001"

@@ -7,10 +7,10 @@ npm install
 if [ ! -f .env ]; then
   cat > .env << EOL
 PORT=3001
-DB_USER=gitpod
+DB_USER=ona
 DB_HOST=localhost
-DB_NAME=gitpodflix
-DB_PASSWORD=gitpod
+DB_NAME=onaflix
+DB_PASSWORD=ona
 DB_PORT=5432
 EOL
 fi

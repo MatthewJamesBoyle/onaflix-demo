@@ -5,9 +5,9 @@ services:
     image: postgres:15-alpine
     restart: unless-stopped
     environment:
-      POSTGRES_USER: gitpod
-      POSTGRES_PASSWORD: gitpod
-      POSTGRES_DB: gitpodflix
+      POSTGRES_USER: ona
+      POSTGRES_PASSWORD: ona
+      POSTGRES_DB: onaflix
       POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256 --auth-local=scram-sha-256"
     ports:
       - "5432:5432"
@@ -15,7 +15,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./migrations:/docker-entrypoint-initdb.d:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U gitpod -d gitpodflix"]
+      test: ["CMD-SHELL", "pg_isready -U ona -d onaflix"]
       interval: 10s
       timeout: 5s
       retries: 5

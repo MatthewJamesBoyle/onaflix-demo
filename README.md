@@ -1,6 +1,6 @@
-# GitpodFlix 🎬
+# OnaFlix 🎬
 
-A modern streaming platform demo built for Gitpod environments, showcasing a full-stack application with React frontend, Node.js backend, and PostgreSQL database.
+A modern streaming platform demo built for Ona environments, showcasing a full-stack application with React frontend, Node.js backend, and PostgreSQL database.
 
 ## Features
 
@@ -11,14 +11,14 @@ A modern streaming platform demo built for Gitpod environments, showcasing a ful
 
 ## Jira MCP Integration
 
-This Gitpod environment includes an automated Jira MCP (Model Context Protocol) server setup that allows AI assistants to interact with Jira for project management tasks.
+This Ona environment includes an automated Jira MCP (Model Context Protocol) server setup that allows AI assistants to interact with Jira for project management tasks.
 
 ### Automated Setup
 
 The Jira MCP server automatically installs and configures on environment startup:
 - Clones from https://github.com/MankowskiNick/jira-mcp
 - Installs to `/home/node/jira-mcp/`
-- Creates configuration at `~/.config/gitpod/mcp-config.json`
+- Creates configuration at `~/.config/ona/mcp-config.json`
 - Pre-configured for coakley.atlassian.net MBA project
 
 ### Available Tools
@@ -40,15 +40,15 @@ The Jira MCP integration is now configured to automatically install and configur
 
 #### Automatic Installation
 - **Devcontainer Setup**: Jira MCP installs during `.devcontainer/setup.sh`
-- **Gitpod Automations**: Additional automation task available via `setupJiraMCP`
-- **Configuration**: Auto-creates `~/.config/gitpod/mcp-config.json`
+- **Ona Automations**: Additional automation task available via `setupJiraMCP`
+- **Configuration**: Auto-creates `~/.config/ona/mcp-config.json`
 
 #### Current Configuration
 - **Jira Instance**: coakley.atlassian.net
-- **User**: joe@gitpod.io  
+- **User**: joe@ona.io  
 - **Project**: MBA (Team #1 Issues)
 - **Server Location**: `/home/node/jira-mcp/`
-- **Config File**: `~/.config/gitpod/mcp-config.json`
+- **Config File**: `~/.config/ona/mcp-config.json`
 
 ### Test Results
 
@@ -80,7 +80,7 @@ When a new environment starts:
 To test the server manually:
 ```bash
 cd ~/jira-mcp
-export JIRA_HOST="coakley.atlassian.net" JIRA_USERNAME="joe@gitpod.io" JIRA_API_TOKEN="..." JIRA_PROJECT_KEY="MBA"
+export JIRA_HOST="coakley.atlassian.net" JIRA_USERNAME="joe@ona.io" JIRA_API_TOKEN="..." JIRA_PROJECT_KEY="MBA"
 echo '{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "search-tickets", "arguments": {"issue_type": "Task", "max_results": 5}}}' | node build/index.js
 ```
 - 🐳 Containerized PostgreSQL database
@@ -127,11 +127,11 @@ Check if all services are running:
 
 Expected output:
 ```
-🔍 GitpodFlix Health Check
+🔍 OnaFlix Health Check
 ==========================
 [SUCCESS] PostgreSQL: ✅ Connected (18 movies in database)
 [SUCCESS] Backend API: ✅ http://localhost:3001 (Status: OK)
-[SUCCESS] Frontend: ✅ http://localhost:3000 (Gitpod Flix)
+[SUCCESS] Frontend: ✅ http://localhost:3000 (Ona Flix)
 [SUCCESS] Movies API: ✅ /api/movies (18 movies)
 [SUCCESS] Search API: ✅ /api/search (1 results for 'dark')
 
@@ -148,7 +148,7 @@ Expected output:
 ├── backend/catalog/   # Node.js API service
 ├── database/main/     # PostgreSQL setup and migrations
 ├── .devcontainer/     # Development container configuration
-├── .gitpod/          # Gitpod automation configuration
+├── .ona/          # Ona automation configuration
 ├── startup.sh        # 🚀 Service startup script
 ├── health-check.sh   # 🔍 Health monitoring script
 └── README.md         # This file
@@ -267,17 +267,17 @@ The development environment includes:
 
 ## License
 
-This project is a demonstration application for Gitpod environments.
+This project is a demonstration application for Ona environments.
     * And a link for your first GitHub issue
 3. **Go to the projects catalog**
-    * Find it at: [app.gitpod.io/projects](https://app.gitpod.io/projects)
-    * Here is every project in GitpodFlix that you have access to
-5. **Open up GitpodFlix**
-    * Search "GitpodFlix" in the list and click **'Create environment'**
+    * Find it at: [app.ona.io/projects](https://app.ona.io/projects)
+    * Here is every project in OnaFlix that you have access to
+5. **Open up OnaFlix**
+    * Search "OnaFlix" in the list and click **'Create environment'**
 
 And bingo! Now have your first environment up and running—that was easy.
 
-![GitpodFlix in the projects catalog](./images/gitpodflix-loading.png)
+![OnaFlix in the projects catalog](./images/onaflix-loading.png)
 
 See above you now have:
 
@@ -305,7 +305,7 @@ Here you have:
 - All authenticated with your GitHub account
 - A powerful environment secure in your corporate network
 
-> **Tip:** Let's rename "Gitpod Flix" to our name by updating `frontend/src/components/Navbar.jsx`. <br/> Watch the web server live reload the change.
+> **Tip:** Let's rename "Ona Flix" to our name by updating `frontend/src/components/Navbar.jsx`. <br/> Watch the web server live reload the change.
 
 Now you're officially **ready-to-code**.
 
@@ -313,11 +313,11 @@ Now you're officially **ready-to-code**.
 
 Now you're setup why not explore:
 
-1. Running a database clear and seed "automation" from the Gitpod UI
+1. Running a database clear and seed "automation" from the Ona UI
 2. Connecting to your environment with the CLI `gitpod environment ssh`
 3. Adding dotfiles for your personal preferences
 
-## ✨ How does this Gitpod magic work?
+## ✨ How does this Ona magic work?
 
 ### Dev Container
 
@@ -327,7 +327,7 @@ Here's a simplified version of how that looks:
 
 ```json
 {
-  "name": "GitpodFlix Dev Environment",
+  "name": "OnaFlix Dev Environment",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {},
@@ -358,19 +358,19 @@ This includes:
 
 ### Automations
 
-Your team have configured automations in `.gitpod/automations.yaml`.
+Your team have configured automations in `.ona/automations.yaml`.
 
 Here's a simplified version of how that looks:
 
 ```yaml
 services:
   catalog:
-    name: "GitpodFlix Web Server"
+    name: "OnaFlix Web Server"
     triggeredBy:
       - postEnvironmentStart
     commands:
       start: |
-        cd /workspaces/gitpodflix-demo/frontend
+        cd /workspaces/onaflix-demo/frontend
         PORT=3001 npx nodemon src/index.ts
 
 tasks:
@@ -381,7 +381,7 @@ tasks:
       - manual
       - postEnvironmentStart
     command: |
-      PGPASSWORD=gitpod psql -h localhost -U gitpod -d gitpodflix -f seeds/movies_complete.sql
+      PGPASSWORD=gitpod psql -h localhost -U gitpod -d onaflix -f seeds/movies_complete.sql
 ```
 
 This includes:
@@ -419,7 +419,7 @@ Your code is saved—simply restart to continue working.
 
 ### Can I connect via SSH for Vim, etc?
 
-Yes via the Gitpod CLI.
+Yes via the Ona CLI.
 
 ### How do I increase my machine size?
 

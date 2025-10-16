@@ -54,7 +54,7 @@ describe('API Service', () => {
       await expect(fetchMovies()).rejects.toThrow('Network error')
     })
 
-    it('should use localhost API URL for non-Gitpod environment', async () => {
+    it('should use localhost API URL for non-Ona environment', async () => {
       fetch.mockResolvedValueOnce({
         ok: true,
         json: async () => []

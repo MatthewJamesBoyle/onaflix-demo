@@ -10,10 +10,10 @@ const port = process.env.PORT || 3001;
 
 // Database configuration
 const pool = new Pool({
-  user: process.env.DB_USER || 'gitpod',
+  user: process.env.DB_USER || 'ona',
   host: process.env.DB_HOST || 'localhost',
-  database: process.env.DB_NAME || 'gitpodflix',
-  password: process.env.DB_PASSWORD || 'gitpod',
+  database: process.env.DB_NAME || 'onaflix',
+  password: process.env.DB_PASSWORD || 'ona',
   port: parseInt(process.env.DB_PORT || '5432'),
 });
 

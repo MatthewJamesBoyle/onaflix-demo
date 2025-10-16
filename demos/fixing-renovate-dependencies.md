@@ -4,7 +4,7 @@ This demo shows how to use Renovate to create pull requests for dependency updat
 
 ## Prerequisites
 
-- Access to a Gitpod environment with this repository
+- Access to a Ona environment with this repository
 - GitHub CLI token configured (`GH_CLI_TOKEN` environment variable)
 - Renovate CLI is pre-installed in the devcontainer
 
@@ -21,7 +21,7 @@ To create a pull request for dependency updates, you can run:
 export RENOVATE_TOKEN=$GH_CLI_TOKEN
 
 # Run Renovate to scan and create pull requests
-renovate --platform=github gitpod-samples/gitpodflix-demo
+renovate --platform=github ona-samples/onaflix-demo
 ```
 
 This will:

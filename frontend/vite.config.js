@@ -7,7 +7,7 @@ export default defineConfig({
     port: 3000,
     host: true,
     allowedHosts: [
-      '.gitpod.dev',
+      '.ona.dev',
       'localhost',
       '127.0.0.1',
       '.sales-emea.flex.doptig.cloud',
